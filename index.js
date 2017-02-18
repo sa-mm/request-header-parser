@@ -4,10 +4,7 @@ var app = express();
 app.set('port', (process.env.PORT || 3000));
 app.enable('trust proxy')
 
-app.get('/', function(req, res) {
-    // var ip = req.ip.replace(/[A-z:]+/g,'');
-    // var ips = req.ips;
-    // console.log(ips);
+app.get('/api/whoami/', function(req, res) {
     var ip = req.ip;
     var lang = req.acceptsLanguages()[0];
     var userAgentString = req.headers['user-agent'];
@@ -19,7 +16,6 @@ app.get('/', function(req, res) {
         "software": operatingSystem
     }
     // console.log(response);
-
     res.send(response);
 });
 
