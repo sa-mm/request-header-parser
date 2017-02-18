@@ -2,7 +2,7 @@ var express = require('express');
 var cloudflare = require('cloudflare-express');
 var app = express();
 
-app.use(cloudflare.restore());
+app.use(cloudflare.restore({update_on_start:true}));
 app.set('port', (process.env.PORT || 3000));
 app.enable('trust proxy');
 
