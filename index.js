@@ -1,11 +1,13 @@
 var express = require('express');
+var cloudflare = require('cloudflare-express');
 var app = express();
 
+app.use(cloudflare.restore());
 app.set('port', (process.env.PORT || 3000));
-app.enable('trust proxy')
+app.enable('trust proxy');
 
 app.get('/api/whoami/', function(req, res) {
-    var ip = req.ip;
+    var ip = req.cf_ip;
     var lang = req.acceptsLanguages()[0];
     var userAgentString = req.headers['user-agent'];
     var re = /(\(.*?\))/;
